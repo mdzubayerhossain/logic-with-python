@@ -1,0 +1,71 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Number Plate Detection</title>
+</head>
+<body>
+    <h1>Car Number Plate Detection</h1>
+    <form method="POST" action="/upload" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit" value="Upload and Detect">
+    </form>
+
+    <h2>Detected Number Plates</h2>
+    <div class="detected-plates">
+        {% for plate in plates %}
+            <div class="plate-item">
+                <img src="{{ plate }}" alt="Detected Plate">
+                <p>{{ plate }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Number Plate Detection</title>
+    <style>
+        .content {
+            display: flex;
+            flex-direction: row;
+        }
+        .left {
+            width: 50%;
+        }
+        .right {
+            width: 50%;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Car Number Plate Detection</h1>
+    <div class="content">
+        <div class="left">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+            <form method="POST" action="/upload" enctype="multipart/form-data">
+                <input type="file" name="file">
+                <input type="submit" value="Upload and Detect">
+            </form>
+        </div>
+        <div class="right">
+            <h2>Detected Number Plates</h2>
+            <ul>
+                {% for plate in plates %}
+                    <li><img style="height: 100px;width: 200px;" src="{{ plate }}" alt="" srcset=""></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
